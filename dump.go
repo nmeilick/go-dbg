@@ -1,8 +1,15 @@
 package dbg
 
 import (
+	"os"
+
 	pp "github.com/k0kubun/pp/v3"
+	"github.com/mattn/go-isatty"
 )
+
+func init() {
+	pp.ColoringEnabled = isatty.IsTerminal(os.Stdout.Fd())
+}
 
 // Dump wraps pp.Println for now.
 func Dump(a ...interface{}) {
